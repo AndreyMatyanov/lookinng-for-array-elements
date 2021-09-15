@@ -1,4 +1,4 @@
-# Looking for an Array Element
+    # Looking for an Array Element
 
 An intermediate level task for practicing loops, branches and arrays.
 

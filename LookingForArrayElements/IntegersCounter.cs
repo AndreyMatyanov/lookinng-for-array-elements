@@ -12,8 +12,24 @@ namespace LookingForArrayElements
         /// <returns>The number of occurrences of the elements that are in <paramref name="elementsToSearchFor"/> <see cref="Array"/>.</returns>
         public static int GetIntegersCount(int[] arrayToSearch, int[] elementsToSearchFor)
         {
-            // TODO #1. Implement the method using "for" statement.
-            throw new NotImplementedException();
+            if (arrayToSearch is null || elementsToSearchFor is null)
+            {
+                throw new ArgumentNullException(nameof(arrayToSearch), "Argument is null");
+            }
+
+            int counter = 0;
+            for (int i = 0; i < arrayToSearch.Length; i++)
+            {
+                for (int j = 0; j < elementsToSearchFor.Length; j++)
+                {
+                    if (arrayToSearch[i] == elementsToSearchFor[j])
+                    {
+                        counter++;
+                    }
+                }
+            }
+
+            return counter;
         }
 
         /// <summary>
@@ -26,8 +42,35 @@ namespace LookingForArrayElements
         /// <returns>The number of occurrences of the elements that are in <paramref name="elementsToSearchFor"/> <see cref="Array"/>.</returns>
         public static int GetIntegersCount(int[] arrayToSearch, int[] elementsToSearchFor, int startIndex, int count)
         {
-            // TODO #2. Implement the method using "while" statement.
-            throw new NotImplementedException();
+            if (arrayToSearch is null || elementsToSearchFor is null)
+            {
+                throw new ArgumentNullException(nameof(arrayToSearch), "Argument is null");
+            }
+
+            int counter = 0;
+            int finalIndex = startIndex + count;
+            if (startIndex < 0 || startIndex > arrayToSearch.Length || count < 0 || finalIndex > arrayToSearch.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex), "Argument is out fo range");
+            }
+
+            while (startIndex < finalIndex)
+            {
+                int i = 0;
+                while (i < elementsToSearchFor.Length)
+                {
+                    if (arrayToSearch[startIndex] == elementsToSearchFor[i])
+                    {
+                        counter++;
+                    }
+
+                    i++;
+                }
+
+                startIndex++;
+            }
+
+            return counter;
         }
     }
 }

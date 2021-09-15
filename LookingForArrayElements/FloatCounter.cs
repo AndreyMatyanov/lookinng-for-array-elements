@@ -13,8 +13,38 @@ namespace LookingForArrayElements
         /// <returns>The number of occurrences of the <see cref="Array"/> elements that match the range criteria.</returns>
         public static int GetFloatsCount(float[] arrayToSearch, float[] rangeStart, float[] rangeEnd)
         {
-            // TODO #3. Implement the method using "for" statement.
-            throw new NotImplementedException();
+            if (arrayToSearch is null || rangeEnd is null || rangeStart is null)
+            {
+                throw new ArgumentNullException(nameof(arrayToSearch), "Argument is null");
+            }
+
+            for (int i = 0; i <= rangeStart.Length - 1; i++)
+            {
+                if (rangeStart[i] > rangeEnd[i])
+                {
+                    throw new ArgumentException("rangeStart is more than rangeEnd");
+                }
+            }
+
+            if (rangeStart.Length != rangeEnd.Length)
+            {
+                throw new ArgumentException("Argument trouble.", nameof(rangeStart));
+            }
+
+            int count = 0;
+
+            for (int i = 0; i < arrayToSearch.Length; i++)
+            {
+                for (int j = 0; j < rangeStart.Length; j++)
+                {
+                    if (arrayToSearch[i] >= rangeStart[j] && arrayToSearch[i] <= rangeEnd[j])
+                    {
+                        count++;
+                    }
+                }
+            }
+
+            return count;
         }
 
         /// <summary>
@@ -28,8 +58,53 @@ namespace LookingForArrayElements
         /// <returns>The number of occurrences of the <see cref="Array"/> elements that match the range criteria.</returns>
         public static int GetFloatsCount(float[] arrayToSearch, float[] rangeStart, float[] rangeEnd, int startIndex, int count)
         {
-            // TODO #4. Implement the method using "do..while" statements.
-            throw new NotImplementedException();
+            if (arrayToSearch is null || rangeEnd is null || rangeStart is null)
+            {
+                throw new ArgumentNullException(nameof(arrayToSearch), "Argument is null");
+            }
+
+            for (int i = 0; i <= rangeStart.Length - 1; i++)
+            {
+                if (rangeStart[i] > rangeEnd[i])
+                {
+                    throw new ArgumentException("rangeStart is more than rangeEnd");
+                }
+            }
+
+            if (rangeStart.Length != rangeEnd.Length)
+            {
+                throw new ArgumentException("Argument trouble.", nameof(rangeStart));
+            }
+
+            int finalIndex = startIndex + count;
+            if (startIndex < 0 || startIndex > arrayToSearch.Length || count < 0 || finalIndex > arrayToSearch.Length)
+            {
+                throw new ArgumentOutOfRangeException(nameof(startIndex), "Argument is out fo range");
+            }
+
+            if (rangeStart.Length == 0 || rangeEnd.Length == 0)
+            {
+                return 0;
+            }
+
+            int counter = 0;
+            do
+            {
+                int i = 0;
+                do
+                {
+                    if (arrayToSearch[startIndex] >= rangeStart[i] && arrayToSearch[startIndex] <= rangeEnd[i])
+                    {
+                        counter++;
+                    }
+
+                    i++;
+                }
+                while (i <= rangeStart.Length - 1);
+                startIndex++;
+            }
+            while (startIndex < finalIndex);
+            return counter;
         }
     }
 }
