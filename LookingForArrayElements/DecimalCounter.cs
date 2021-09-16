@@ -36,28 +36,17 @@ namespace LookingForArrayElements
             }
 
             decimal[] arrayToSearchOneZero = new decimal[arrayToSearch.Length];
-            for (int i = 0; i < arrayToSearchOneZero.Length; i++)
-            {
-                arrayToSearchOneZero[i] = 0;
-            }
-
             int count = 0;
-            for (int x = 0; x < ranges.GetLength(0); x++)
+            for (int j = 0; j < arrayToSearch.Length; j++)
             {
-                for (int j = 0; j < arrayToSearch.Length; j++)
+                arrayToSearchOneZero[j] = 0;
+                for (int x = 0; x < ranges.GetLength(0); x++)
                 {
-                    if (ranges[x].Length != 0 && arrayToSearch[j] >= ranges[x][0] && arrayToSearch[j] <= ranges[x][1])
+                    if (ranges[x].Length != 0 && arrayToSearch[j] >= ranges[x][0] && arrayToSearch[j] <= ranges[x][1] && arrayToSearchOneZero[j] == 0)
                     {
                         arrayToSearchOneZero[j] = 1;
+                        count++;
                     }
-                }
-            }
-
-            foreach (decimal arr in arrayToSearchOneZero)
-            {
-                if (arr == 1)
-                {
-                    count++;
                 }
             }
 
@@ -112,18 +101,11 @@ namespace LookingForArrayElements
             {
                 for (int j = startIndex; j < finalIndex; j++)
                 {
-                    if (ranges[x].Length != 0 && arrayToSearch[j] >= ranges[x][0] && arrayToSearch[j] <= ranges[x][1])
+                    if (ranges[x].Length != 0 && arrayToSearch[j] >= ranges[x][0] && arrayToSearch[j] <= ranges[x][1] && arrayToSearchOneZero[j] == 0)
                     {
                         arrayToSearchOneZero[j] = 1;
+                        counter++;
                     }
-                }
-            }
-
-            foreach (decimal arr in arrayToSearchOneZero)
-            {
-                if (arr == 1)
-                {
-                    counter++;
                 }
             }
 
