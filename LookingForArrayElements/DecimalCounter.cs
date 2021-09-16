@@ -91,15 +91,11 @@ namespace LookingForArrayElements
             }
 
             decimal[] arrayToSearchOneZero = new decimal[arrayToSearch.Length];
-            for (int i = 0; i < arrayToSearchOneZero.Length; i++)
-            {
-                arrayToSearchOneZero[i] = 0;
-            }
-
             int counter = 0;
-            for (int x = 0; x < ranges.GetLength(0); x++)
+            for (int j = startIndex; j < finalIndex; j++)
             {
-                for (int j = startIndex; j < finalIndex; j++)
+                arrayToSearchOneZero[j] = 0;
+                for (int x = 0; x < ranges.GetLength(0); x++)
                 {
                     if (ranges[x].Length != 0 && arrayToSearch[j] >= ranges[x][0] && arrayToSearch[j] <= ranges[x][1] && arrayToSearchOneZero[j] == 0)
                     {
