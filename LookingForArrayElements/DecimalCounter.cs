@@ -35,16 +35,29 @@ namespace LookingForArrayElements
                 }
             }
 
+            decimal[] arrayToSearchOneZero = new decimal[arrayToSearch.Length];
+            for (int i = 0; i < arrayToSearchOneZero.Length; i++)
+            {
+                arrayToSearchOneZero[i] = 0;
+            }
+
             int count = 0;
-            for (int i = 0; i < ranges.GetLength(0); i++)
+            for (int x = 0; x < ranges.GetLength(0); x++)
             {
                 for (int j = 0; j < arrayToSearch.Length; j++)
                 {
-                    if (ranges[i].Length != 0 && arrayToSearch[j] >= ranges[i][0] && arrayToSearch[j] <= ranges[i][1])
+                    if (ranges[x].Length != 0 && arrayToSearch[j] >= ranges[x][0] && arrayToSearch[j] <= ranges[x][1])
                     {
-                        arrayToSearch[j] = decimal.MinValue;
-                        count++;
+                        arrayToSearchOneZero[j] = 1;
                     }
+                }
+            }
+
+            foreach (decimal arr in arrayToSearchOneZero)
+            {
+                if (arr == 1)
+                {
+                    count++;
                 }
             }
 
@@ -80,30 +93,37 @@ namespace LookingForArrayElements
                 {
                     throw new ArgumentException("Length is not 2.");
                 }
-
-                if (ranges[i] is null)
-                {
-                    throw new ArgumentNullException(nameof(ranges), "Ranges is null");
-                }
             }
 
             int finalIndex = startIndex + count;
-
             if (startIndex < 0 || startIndex > arrayToSearch.Length || count < 0 || finalIndex > arrayToSearch.Length)
             {
                 throw new ArgumentOutOfRangeException(nameof(startIndex), "Argument is out fo range");
             }
 
+            decimal[] arrayToSearchOneZero = new decimal[arrayToSearch.Length];
+            for (int i = 0; i < arrayToSearchOneZero.Length; i++)
+            {
+                arrayToSearchOneZero[i] = 0;
+            }
+
             int counter = 0;
-            for (int i = 0; i < ranges.GetLength(0); i++)
+            for (int x = 0; x < ranges.GetLength(0); x++)
             {
                 for (int j = startIndex; j < finalIndex; j++)
                 {
-                    if (ranges[i].Length != 0 && arrayToSearch[j] >= ranges[i][0] && arrayToSearch[j] <= ranges[i][1])
+                    if (ranges[x].Length != 0 && arrayToSearch[j] >= ranges[x][0] && arrayToSearch[j] <= ranges[x][1])
                     {
-                        arrayToSearch[j] = decimal.MinValue;
-                        counter++;
+                        arrayToSearchOneZero[j] = 1;
                     }
+                }
+            }
+
+            foreach (decimal arr in arrayToSearchOneZero)
+            {
+                if (arr == 1)
+                {
+                    counter++;
                 }
             }
 
