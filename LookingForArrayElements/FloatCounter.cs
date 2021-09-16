@@ -32,7 +32,6 @@ namespace LookingForArrayElements
             }
 
             int count = 0;
-
             for (int i = 0; i < arrayToSearch.Length; i++)
             {
                 for (int j = 0; j < rangeStart.Length; j++)
