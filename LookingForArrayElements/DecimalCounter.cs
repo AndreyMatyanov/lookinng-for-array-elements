@@ -16,14 +16,14 @@ namespace LookingForArrayElements
         {
             if (arrayToSearch is null || ranges is null)
             {
-                throw new ArgumentNullException(nameof(arrayToSearch), "Is null");
+                throw new ArgumentNullException(nameof(arrayToSearch), "Argument is null");
             }
 
             foreach (decimal[] array in ranges)
             {
                 if (array == null)
                 {
-                    throw new ArgumentNullException(nameof(ranges));
+                    throw new ArgumentNullException(nameof(ranges), "Argument is null");
                 }
             }
 

@@ -31,6 +31,12 @@ namespace LookingForArrayElements
                 throw new ArgumentException("Argument trouble.", nameof(rangeStart));
             }
 
+            float[] arrayToSearchOneZero = new float[arrayToSearch.Length];
+            for (int index = 0; index < arrayToSearchOneZero.Length; index++)
+            {
+                arrayToSearchOneZero[index] = 0;
+            }
+
             int count = 0;
             for (int i = 0; i < arrayToSearch.Length; i++)
             {
@@ -38,8 +44,16 @@ namespace LookingForArrayElements
                 {
                     if (arrayToSearch[i] >= rangeStart[j] && arrayToSearch[i] <= rangeEnd[j])
                     {
-                        count++;
+                        arrayToSearchOneZero[i] = 1;
                     }
+                }
+            }
+
+            for (int index = 0; index < arrayToSearchOneZero.Length; index++)
+            {
+                if (arrayToSearchOneZero[index] == 1)
+                {
+                    count++;
                 }
             }
 
@@ -86,6 +100,15 @@ namespace LookingForArrayElements
                 return 0;
             }
 
+            float[] arrayToSearchOneZero = new float[arrayToSearch.Length];
+            int index = 0;
+            do
+            {
+                arrayToSearchOneZero[index] = 0;
+                index++;
+            }
+            while (index < arrayToSearch.Length);
+
             int counter = 0;
             do
             {
@@ -94,15 +117,27 @@ namespace LookingForArrayElements
                 {
                     if (arrayToSearch[startIndex] >= rangeStart[i] && arrayToSearch[startIndex] <= rangeEnd[i])
                     {
-                        counter++;
+                        arrayToSearchOneZero[startIndex] = 1;
                     }
 
                     i++;
                 }
-                while (i <= rangeStart.Length - 1);
+                while (i < rangeStart.Length);
                 startIndex++;
             }
             while (startIndex < finalIndex);
+
+            int indexCheck = 0;
+            do
+            {
+                if (arrayToSearchOneZero[indexCheck] == 1)
+                {
+                    counter++;
+                }
+
+                indexCheck++;
+            }
+            while (indexCheck < arrayToSearchOneZero.Length);
             return counter;
         }
     }
