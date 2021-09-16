@@ -2,6 +2,7 @@
 using NUnit.Framework;
 
 #pragma warning disable CA1707
+#pragma warning disable S4136
 
 namespace LookingForArrayElements.Tests
 {
@@ -189,6 +190,7 @@ namespace LookingForArrayElements.Tests
         }
 
         [Test]
+
         public void DecimalCounter_FifteenElementsThreeRanges_ReturnsResult()
         {
             // Arrange
